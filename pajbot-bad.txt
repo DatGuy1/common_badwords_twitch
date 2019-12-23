@@ -1,0 +1,4 @@
+N TriHard
+(?:((?:country|code).*227)|227.*(?:country|code))
+\baggin\b
+VoteNay\s*g(?:a|er)
