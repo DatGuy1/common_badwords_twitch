@@ -1,0 +1,10 @@
+1. Get list of followers: api.twitch.tv/helix/users/follows?to_id=<target streamer id>&first=100.
+2. Get spambots: Do forward pagination until you reach the spambots, copy them all, and paste them somewhere that supports regex find and replace
+3. Do the following replacements, in order. Note that if you're on Windows use \r\n instead of \n:
+find: \s*},\s*{\n} replace with: nothing
+find (with . matches newline): \s*"from_i.+?(?=\n)\n\s*"from_name": "([^"]*)",\n.+?(?="from_id")]) replace with: \n\1
+find: ^(.+?(?=\n)) replace with: .ban \1 spambot
+4. Make sure everything is fine and upload it to pastebin
+5. Take the raw pastebin link, and whisper pajbot `!eval bot.privmsg_from_file(<raw pastebin url>)`. See https://github.com/pajbot/pajbot/blob/master/pajbot/bot.py#L434 for more arguments.
+
+There's for sure more effective ways of doing this, but that's what works for me.
